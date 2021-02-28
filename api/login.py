@@ -1,5 +1,6 @@
 from bottle import get, post ,request
 import model.user
+import json
 
 @post('/login')
 def login_verify(db):
@@ -10,6 +11,7 @@ def login_verify(db):
     if (res):
        token = new_user.generate_auth_token()
        user_role = new_user.get_user_role(db, data.get("username"))
-       return {"accessToken": token, "username": data.get("username"), "user_role": user_role}
+       result = {"accessToken": str(token), "username": data.get("username"), "user_role": user_role}
+       return json.dumps(result).encode("utf-8")
     else:
         return {}

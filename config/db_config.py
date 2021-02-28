@@ -7,10 +7,11 @@ from sqlalchemy.ext.declarative import declarative_base
 base = declarative_base()
 
 # MySQL DB Connection
-# Username: test1
-# Pwd: Aa123456789!
-# Database name: springdb
+# Username: robert
+# Password: 123456
+# Database name: mydb
 # engine = create_engine('mysql://test1:Aa123456789!@localhost:3306/springdb')
+
 engine = create_engine('mysql://robert:123456@172.17.0.2:3306/mydb')
 
 create_session = sessionmaker(bind=engine)

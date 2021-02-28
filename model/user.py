@@ -70,6 +70,8 @@ class User():
     # get new token，valid for 10min
     def generate_auth_token(self, expiration = 600):
         s = Serializer(SECRET_KEY, expires_in = expiration)
+        print(s)
+        print(s.dumps({ 'id': self.username }))
         return s.dumps({ 'id': self.username })
 
     # parse token for identification
