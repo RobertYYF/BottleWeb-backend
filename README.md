@@ -67,25 +67,31 @@
 
 (Bottle部分)
 
-1. 利用Dockerfile生成bottle的docker镜像
+1. 运行：
+ 
+         docker inspect mysql-server
+         
+   查看mysql-server容器的ip-address, 修改config/db_config.py中172.17.0.2，将其替换成你得到的ip-address (应该有更合理的方式连接俩container，暂时先用这种原始人方法)
+
+2. 利用Dockerfile生成bottle的docker镜像
    
    在Terminal运行：
    
          sudo docker build -t test:v0 .
 
-2. 利用刚刚生成的docker镜像生成docker容器,容器命名为bottle-backend, 注意--volumn=后面跟的absolute path修改成你电脑里对应的该directory位置
+3. 利用刚刚生成的docker镜像生成docker容器,容器命名为bottle-backend, 注意--volumn=后面跟的absolute path修改成你电脑里对应的该directory位置
     
    在Terminal运行： 
    
          docker create --name bottle-backend -p 8080:8080 --volume=/home/robert/Desktop/BottleWebsite test:v0
 
-3. 把bottle的容器放上刚刚mysql也在的那个network桥
+4. 把bottle的容器放上刚刚mysql也在的那个network桥
    
    在Terminal中运行：
    
          docker network connect --alias bottle my-network bottle-backend
 
-4. 运行容器：
+5. 运行容器：
    
          docker start bottle-backend
 
