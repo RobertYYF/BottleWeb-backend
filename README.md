@@ -125,21 +125,21 @@ Advanced REST Client （ARC）也很好用，更方便
 
 1. 总结几个常用的docker command: 
 
-         docker ps 正在运行的container
+         docker ps                                       正在运行的container
    
-         docker images 已创建的docker镜像
+         docker images                                   已创建的docker镜像
    
-         docker inspect CONTAINER-NAME 查看对应container的详细信息（比如看里头的network部分）
+         docker inspect CONTAINER-NAME                   查看对应container的详细信息（比如看里头的network部分）
    
          docker rmi $(docker images -f dangling=true -q) 删除多余的docker images(不然很占电脑空间）
    
-         docker rm CONTAINER-NAME 删除对应的container
+         docker rm CONTAINER-NAME                        删除对应的container
          
-         docker logs CONTAINER-NAME 查看该container的log，用来找bug
+         docker logs CONTAINER-NAME                      查看该container的log，用来找bug
          
-         docker exec -it mysql-server mysql -uroot -p 进入docker mysql的cli，输入"quit"退出
+         docker exec -it mysql-server mysql -uroot -p    进入docker mysql的cli，输入"quit"退出
          
-         docker exec -it CONTAINER-NAME bash 进入container的bash，可以直接在里面用curl测试container内部的bottle server是否正常工作， 输入"exit"退出
+         docker exec -it CONTAINER-NAME bash             进入container的bash，可以直接在里面用curl测试container内部的bottle server是否正常工作， 输入"exit"退出
 
 2. 一共2个docker container：MYSQL和Bottle，container名分别为mysql-server和bottle-backend，container建好后直接docker start container-name去跑就行，没更改时不用重建
 
