@@ -16,7 +16,7 @@
    
          docker pull mysql/mysql-server:lastest
    
-2. 本地生成运行Mysql容器，Mysql初始用户为root, 密码为设置的123456，容器名设为mysql-server
+2. 本地生成并运行Mysql容器，Mysql初始用户为root, 密码为设置的123456，容器名设为mysql-server
    
    在Terminal运行：
    
@@ -99,7 +99,7 @@
 
 Tips:
 
-1. 一共2个docker container：MYSQL和Bottle，container名分别为mysql-server和bottle-backend
+1. 一共2个docker container：MYSQL和Bottle，container名分别为mysql-server和bottle-backend，container建好后直接docker start container-name去跑就行，没更改时不用重建
 
 2. 修改代码后想测试新功能需要重新创建Bottle部分的docker image和docker container（重过一遍上面的Bottle部分），Mysql那边不用动
 
