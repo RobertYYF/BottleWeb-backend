@@ -41,26 +41,26 @@
    
    输入密码123456进入mysql以后运行： 
    
-                                 create database mydb;
-                                 
-                                 create user 'robert'@'%' identified by '123456';
-                                 
-                                 grant all privileges on mydb.* to 'robert'@'%';
-                                 
-                                 use mysql;
-                                 
-                                 ALTER USER 'robert'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
-                                 
-                                 use mydb;
-                                 
-                                 create table sys_user (user_id INTEGER AUTO_INCREMENT PRIMARY KEY,
-                                                        username VARCHAR(50),
-                                                        password VARCHAR(255),
-                                                        user_role VARCHAR(10));
-                                 
-                                 insert into sys_user values (0, 'test', 'test', 'admin');
-                                 
-                                 quit;
+         create database mydb;
+
+         create user 'robert'@'%' identified by '123456';
+
+         grant all privileges on mydb.* to 'robert'@'%';
+
+         use mysql;
+
+         ALTER USER 'robert'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+
+         use mydb;
+
+         create table sys_user (user_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+                                username VARCHAR(50),
+                                password VARCHAR(255),
+                                user_role VARCHAR(10));
+
+         insert into sys_user values (0, 'test', 'test', 'admin');
+
+         quit;
 
 4. 然后创建一个docker network，为后续与bottle的docker相连作准备（理解为在俩docker容器间搭桥通讯)
    
