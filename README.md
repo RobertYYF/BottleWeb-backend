@@ -6,7 +6,7 @@
 
 先安装docker (自行Google), 然后Clone github repo到本地, 建议用vscode打开
 
-以下全部的command都要让terminal进到repo的directory中再输入
+以下全部的command都要让terminal进到repo的directory中再输入（省事儿）
 
 （MYSQL部分）
 
