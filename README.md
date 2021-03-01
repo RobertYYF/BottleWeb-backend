@@ -1,7 +1,8 @@
 # BottleWeb-backend
 
-使用Docker统一开发环境，过程中遇到问题可以先看一下README底部的Tips
+使用Docker统一环境，过程中遇到问题可以先看一下README底部的Tips
 
+Docker我们应该会用在之后的网站部署，开发建议想办法把本地环境搭好
 
 # Docker整体思路
 
@@ -155,7 +156,7 @@ Advanced REST Client （ARC）也很好用，更方便
 
 8. 新建container的时候container名不能使用已经用过的名字，除非删掉那个对应的container
                
-9. 十分建议想办法按上一个repo把环境在本地搭好，那个搭环境可比docker省事儿多了0.0，docker这玩意用来部署网站的时候打包更方便一点，开发的时候用这个还是有点蛋疼，import个新的包还得改Dockerfile然后重建image，但听说有办法直接基于Docker环境做开发，还没了解
+9. 十分建议按上一个repo把环境在本地搭好，那个搭环境可比docker省事儿多了0.0，docker这玩意用来部署网站的时候打包更方便一点，开发的时候用这个还是有点蛋疼，import个新的包还得改Dockerfile然后重建image，但听说有办法直接基于Docker环境做开发，还没了解
 
 10. 建议全程使用VSC，Pycharm好像老是出现奇奇怪怪的问题
 
