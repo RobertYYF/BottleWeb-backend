@@ -1,24 +1,91 @@
 # BottleWeb-backend
 
+# 本地开发环境配置
+
+## Python部分
+
+安装好python后，按以下顺序安装
+
+```
+sudo apt install python-mysqldb
+
+sudo apt install libmysqlclient-dev
+
+pip3 install bottle
+
+pip3 install bottle_sqlalchemy
+
+pip3 install sqlalchemy
+
+pip3 install bottle-mysql
+
+pip3 install mysqlclient
+
+pip3 install itsdangerous
+
+pip3 install paste
+```
+
+## Mysql部分
+
+本地安装好Mysql后，```sudo mysql``` , 在Mysql CLI内按以下顺序执行
+
+```
+create database mydb;
+
+create user 'robert'@'%' identified by 'Aa1234567890!';
+
+grant all privileges on mydb.* to 'robert'@'%';
+
+use mydb;
+
+create table sys_user (user_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+                      username VARCHAR(50),
+                      password VARCHAR(255),
+                      user_role VARCHAR(10));
+                      
+#测试一下
+insert into sys_user values (0, 'test', 'test', 'admin');
+
+select * from sys_user;
+```
+
+## 如何在本地运行后端代码
+
+Clone repo到本地，用vscode打开该folder，修改以下两处位置（代码中的版本是给Docker用的），注意修改后Ctrl+S保存
+
+1. config/db_config.py 中的 engine = create_engine('mysql://robert:123456@172.17.0.2:3306/mydb')
+
+   替换成 engine = create_engine('mysql://robert:Aa1234567890!@localhost:3306/mydb')
+
+2. main.py 中，comment掉上面的给docker用的 bottle.run(server = 'paste', host = '0.0.0.0', port = 8080, debug=True, reloader=True)
+ 
+   使用#run on host下面的bottle.run(server = 'paste', host = 'localhost', port = 8080, debug=True, reloader=True)
+   
+修改完成后打开vscode的Terminal，输入python3 main.py运行
+
+
+# 使用Docker
+
 使用Docker统一环境，过程中遇到问题可以先看一下README底部的Tips
 
-Docker我们应该会用在之后的网站部署，开发建议想办法把本地环境搭好
+Docker我们应该会用在之后的网站部署，开发时建议想办法把本地环境搭好，在本地开发
 
-# Docker整体思路
+## Docker整体思路
 
 创建image (从DockerHub pull 或 使用Dockerfile) --> 通过image创建Container --> 运行Container
 
 下面的指令跑一遍基本就知道docker咋用了
 
 
-# 教程
+## 教程
 
 先安装docker (自行Google), 然后Clone github repo到本地, 建议用vscode打开
 
 以下全部的command都要让terminal进到repo的directory中再输入（省事儿，下面有提）
 
 
-# MYSQL部分
+## MYSQL部分
 
 1. 安装Mysql docker
 
@@ -78,7 +145,7 @@ Docker我们应该会用在之后的网站部署，开发建议想办法把本�
 6. Mysql部分搭建完毕，然后搭bottle部分，这里需要用到github repo里的Dockerfile
 
 
-# Bottle部分
+## Bottle部分
 
 1. 运行：
 
@@ -113,7 +180,7 @@ Docker我们应该会用在之后的网站部署，开发建议想办法把本�
 到这就应该OK了
 
 
-# 测试API接口是否正常工作
+## 测试API接口是否正常工作
 
 如果 test.py 里面的几个接口都能正常使用就没啥问题了
 
@@ -122,7 +189,7 @@ Docker我们应该会用在之后的网站部署，开发建议想办法把本�
 Advanced REST Client （ARC）也很好用，更方便
 
 
-# Tips
+## Tips
 
 1. 总结几个常用的docker command:
 
@@ -161,7 +228,7 @@ Advanced REST Client （ARC）也很好用，更方便
 10. 建议全程使用VSC，Pycharm好像老是出现奇奇怪怪的问题
 
 
-# 下一步
+## 下一步
 
  给Vue也搭一个Docker容器，然后结合ngix，docker-compose和上面那俩docker container实现一键部署上线
 
