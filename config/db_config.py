@@ -10,9 +10,9 @@ base = declarative_base()
 # Username: robert
 # Password: 123456
 # Database name: mydb
-# engine = create_engine('mysql://test1:Aa123456789!@localhost:3306/springdb')
+engine = create_engine('mysql://test1:Aa123456789!@localhost:3306/springdb')
 
-engine = create_engine('mysql://robert:123456@172.17.0.2:3306/mydb')
+# engine = create_engine('mysql://robert:123456@172.17.0.2:3306/mydb')
 
 create_session = sessionmaker(bind=engine)
 

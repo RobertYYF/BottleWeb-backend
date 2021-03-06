@@ -31,9 +31,11 @@ class User():
     def validate_login(self, db, username, pwd):
         temp = user_dao.select_by_username(db, username)
         if temp is not None:
-            return temp.get("password") == self.salted_password(pwd)
-        else:
-            return False
+            if (temp.get("password") == self.salted_password(pwd)):
+                self.username = username
+                return True
+            else:
+                return False
 
     # provide user role after login
     def get_user_role(self, db, username):
@@ -70,19 +72,21 @@ class User():
     # get new token，valid for 10min
     def generate_auth_token(self, expiration = 600):
         s = Serializer(SECRET_KEY, expires_in = expiration)
-        print(s)
-        print(s.dumps({ 'id': self.username }))
+        print(self.username)
         return s.dumps({ 'id': self.username })
 
     # parse token for identification
     @staticmethod
     def verify_auth_token(token):
+        print("start verifying token")
         s = Serializer(SECRET_KEY)
         try:
             data = s.loads(token)
         except SignatureExpired:
+            print("SignatureExpired")
             return None # valid token, but expired
         except BadSignature:
+            print("BadSignature")
             return None # invalid token
-        user = User.query.get(data['username'])
+        user = data['id']
         return user

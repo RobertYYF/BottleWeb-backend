@@ -1,5 +1,6 @@
-from bottle import post, get, put, delete, request
+from bottle import post, get, put, delete, request, response
 from dao import user_dao
+from model.user import User
 
 # api test
 
@@ -26,6 +27,29 @@ def update_test(db):
     user_dao.update_password(db, data.get("username"), data.get("password"))
     return {'result': "update success"}
 
+# token test
+
+# access public content without token
+@get('/test/public')
+def get_public_test():
+    return {"content": "public content"}
+
+# access private content with token
+@get('/test/private')
+def get_private_test():
+    data = request.headers
+    # verify token
+    token = data['Authorization']
+    token = bytes(token[2:len(token)-1], 'utf-8')
+    print(token)
+    username = User.verify_auth_token(token)
+    # if token is valid, username will be returned
+    if username != None:
+        print(username)
+        return {"content": "private content"}
+    # invalid token
+    else:
+        return {"content": "ERROR"}
 
 
 
