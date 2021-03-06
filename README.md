@@ -1,5 +1,11 @@
 # BottleWeb-backend
 
+## 运行注意事项：
+
+前端默认监听的后端port是8080，所以如果bottle没有运行在8080需要去前端代码修改主目录中的vue.config.js和services/auth.service.js的URL
+
+建议先跑python3 main.py再去跑npm run serve以确保bottle能呆在8080
+
 # 本地开发环境配置
 
 ## Python部分
